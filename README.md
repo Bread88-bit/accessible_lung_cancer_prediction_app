@@ -1,2 +1,2 @@
 # accessible_lung_cancer_prediction_app
-Connected to a webpage to provide a user interface for predicting the risk of lung cancer
+Connected to a webpage to provide a user interface for predicting the risk of lung cancer by using two machine learing algorithm models
