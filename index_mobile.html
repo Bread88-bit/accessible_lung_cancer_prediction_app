@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lung Cancer Prediction App</title>
+    <link rel="stylesheet" href="https://pyscript.net/snapshots/2024.9.2/core.css"/>
+    <link rel="icon" type="image/x-icon" href="imgs/aerislogo2.png">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=League Spartan' rel='stylesheet'>
+    <link href="https://fonts.cdnfonts.com/css/open-sauce-one" rel="stylesheet">
+    <script type="module" src="https://pyscript.net/snapshots/2024.9.2/core.js"></script>
+    
+</head>
+<script>
+  var progress = 0
+  function firststart() {
+    document.getElementById("firstpagecircle").style.display = "none"
+    document.getElementById("firstpagediv").style.display = "none"
+    document.getElementById("sympdiv").style.display = "block"
+    document.getElementById("male").style.display = "block"
+    document.getElementById("female").style.display = "block"
+    progress = 1
+  }
+    function gender(g) {
+    if (g==1){
+      document.getElementById("storeage").value = "1"
+      document.getElementById("rectmale").style.fill = "#aaf2ff"
+      document.getElementById("rectfemale").style.fill = "#ffffff"
+
+    }else{
+      document.getElementById("storeage").value = "0"
+      document.getElementById("rectfemale").style.fill = "#aaf2ff"
+      document.getElementById("rectmale").style.fill = "#ffffff"
+
+    }
+  }
+  function secondstart() {
+    if (progress == 1){
+      if (document.getElementById("storeage").value == "-1") {
+        document.getElementById("statusbar").innerHTML = "PLEASE SELECT AN OPTION."
+        document.getElementById("antistatusbar").style.display = "none"        
+        setTimeout(removestatus, 3000)
+      }else{
+        document.getElementById("sympq").innerHTML = "WHAT IS YOUR AGE?"
+        document.getElementById("male").style.display = "none"
+        document.getElementById("female").style.display = "none"
+        document.getElementById("ageinput").style.display = "block"
+        progress = 2
+      }
+      }else if (progress == 2){
+        if (document.getElementById("ageinput").value == "" || document.getElementById("ageinput").value < 0) {
+          document.getElementById("statusbar").innerHTML = "PLEASE INPUT YOUR AGE."
+          document.getElementById("antistatusbar").style.display = "none"        
+          setTimeout(removestatus, 3000)
+        }else{
+          document.getElementById("ageinput").style.display = "none"
+          document.getElementById("sympq").innerHTML = "SYMPTOMS & HABITS & MEDICAL ISSUES"
+          document.getElementById("selectdiv").style.display = "block"
+          document.getElementById("nexttbtn").style.display = "none"
+          document.getElementById("submittbtn").style.display = "block"
+          progress = 3
+        }
+        
+
+      }else if (progress == 3) {
+        document.getElementById("submittbtn").style.display = "none"
+        document.getElementById("selectdiv").style.display = "none"
+        document.getElementById("sympq").innerHTML = "RESULTS:"
+        document.getElementById("telluspara").style.display = "none"
+        document.getElementById("resultbox").style.display = "block"
+
+      }
+
+  }
+  function removestatus() {
+    document.getElementById("statusbar").innerHTML = ""
+    document.getElementById("antistatusbar").style.display = "block"
+  }
+  function showmore() {
+    if (iffurther == 0) {
+      document.getElementById("furtherresult").style.display = "block"
+      document.getElementById("showhide").innerHTML = "Hide Detail"
+      iffurther = 1
+    }else{
+      document.getElementById("furtherresult").style.display = "none"
+      document.getElementById("showhide").innerHTML = "Show Detail"
+      iffurther = 0
+    }
+  }
+  iffurther = 0
+</script>
+<style>
+    .py-error {
+        display:none;
+    }
+    #bodyy {
+        background-image: url('imgs/bluebg.png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+    rect:hover {
+      fill:#aaf2ff;
+    }
+</style>
+
+<img src="imgs/aerislogo.png" style="width:180px;height100px">
+<svg width="80" height="80" onclick="window.location.href = 'index.html'" style="cursor: pointer;position:absolute;left:200px">
+  <rect width="50" height="50" x="10" y="10" clip-path="inset(0% round 50px)" fill="white" />
+  <image x="12.5" y="12.5" href="imgs/desktop.png" width="45" height="45" clip-path="inset(0% round 600px)"/>
+
+</svg>
+
+
+<div style="display:block" id="firstpagediv">
+<p style="font-family:'Montserrat';font-size:22.7px;color:white">WE ARE HERE</p>
+<h1 style="font-family:'League Spartan';font-size:44.8px;color:white;line-height:1.6">TO HELP DETECT<br>YOUR RISK OF<br>LUNG CANCER.</h1>
+<p style="font-family:'Open Sauce One';font-size:13.8px;color:white">a website destined to help people with the best effort.</p>
+<div style="width:100%;height:100%;display:block" id="firstpagecircle">
+<svg height="505" width="505">
+  <circle cx="300" cy="300" r="200" id="firstcircle"
+  stroke="#0097b2" stroke-width="6" fill="#ffffff" style="background-image: url('imgs/doctorhand.png')"/>
+Sorry, your browser does not support inline SVG.
+  <image x="110" y="110" href="imgs/2doctorhand.png" width="380" height="380" clip-path="inset(0% round 600px)"/>
+</svg>    
+</div><br><br>
+<svg width="220" height="130" onclick="firststart()" style="cursor: pointer">
+  <rect width="200" height="50" x="10" y="10" clip-path="inset(0% round 50px)" fill="white" />
+  <text x="50" y="40" fill="black" style="font-family:'Montserrat';font-size:17.1px">Start now</text>
+  <image x="162.5" y="12.5" href="imgs/bluecirclearrow.png" width="45" height="45" clip-path="inset(0% round 600px)"/>
+
+</svg>
+</div>
+
+
+
+
+
+
+
+
+<div style="position:absolute;left:60px;top:100px;display:none" id="sympdiv">
+<p style="font-family:'Montserrat';font-size:22.7px;color:white" id="telluspara">TELL US:</p>
+<h1 style="font-family:'League Spartan';font-size:44.8px;color:white" id="sympq">WHAT IS YOUR GENDER?</h1>
+<br><br><br><br><br><br><br><br><br><br><br><br><br id="antistatusbar"><p id="statusbar" style="font-family:'Montserrat';font-size:22.7px;color:#ff0000"></p><br><br>
+<svg width="220" height="130" onclick="secondstart()" style="cursor: pointer" id="nexttbtn">
+  <rect width="200" height="50" x="10" y="10" clip-path="inset(0% round 50px)" fill="white" />
+  <text x="50" y="40" fill="black" style="font-family:'Montserrat';font-size:17.1px">Next</text>
+  <image x="162.5" y="12.5" href="imgs/bluecirclearrow.png" width="45" height="45" clip-path="inset(0% round 600px)"/>
+
+</svg>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<svg width="220" height="130" py-click="submitbtn" onclick="secondstart()" style="cursor: pointer;display:none" id="submittbtn">
+  <rect width="200" height="50" x="10" y="10" clip-path="inset(0% round 50px)" fill="white" />
+  <text x="50" y="40" fill="black" style="font-family:'Montserrat';font-size:17.1px" id="nextbtn">SUBMIT</text>
+  <image x="162.5" y="12.5" href="imgs/bluecirclearrow.png" width="45" height="45" clip-path="inset(0% round 600px)"/>
+
+</svg>
+
+</div>
+<input id="storeage" style="display:none" value="-1">
+<div style="position:absolute;left:60px;top:350px" id="ansdiv">
+<svg width="220" height="130" onclick="gender(1)" style="cursor: pointer" id="male" display="none">
+  <rect width="200" height="50" x="10" y="10" clip-path="inset(0% round 50px)" id="rectmale" fill="white" />
+  <text x="90" y="40" fill="black" style="font-family:'Montserrat';font-size:17.1px">Male</text>
+
+</svg><br>
+<svg width="220" height="130" onclick="gender(0)" style="cursor: pointer" id="female" display="none">
+  <rect width="200" height="50" x="10" y="10" clip-path="inset(0% round 50px)" id="rectfemale" fill="white" />
+  <text x="80" y="40" fill="black" style="font-family:'Montserrat';font-size:17.1px">Female</text>
+
+</svg>
+<input type=number id="ageinput" placeholder="AGE:" style="display:none;height:35px;width:170px;padding: 6px 10px;color: #333;border-radius:50px;font-size:17.1px;margin-bottom: 20px;border-color:white;text-align:center">
+
+  <div id="selectdiv" style="display:none">
+    <svg width="160" height="60">
+    <rect width="150" height="50" x="10" y="10" fill="#98efff" />
+    <text x="55" y="40" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold">Smoking</text>
+    </svg>
+    <input id="d2" type="checkbox" style="width:50px;height:50px">
+    
+    <svg width="160" height="60">
+    <rect width="150" height="50" x="10" y="10" fill="#98efff" />
+    <text x="40" y="40" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold">Yellow Fingers</text>
+    </svg>
+    <input id="d3" type="checkbox" style="width:50px;height:50px">
+    <br>
+    <svg width="160" height="60">
+    <rect width="150" height="50" x="10" y="10" fill="#98efff" />
+    <text x="60" y="40" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold">Anxiety</text>
+    </svg>
+    <input id="d4" type="checkbox" style="width:50px;height:50px">
+    
+    <svg width="160" height="60">
+    <rect width="150" height="50" x="10" y="10" fill="#98efff" />
+    <text x="40" y="40" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold">Peer Pressure</text>
+    </svg>
+    <input id="d5" type="checkbox" style="width:50px;height:50px">
+    <br>
+    <svg width="160" height="60">
+    <rect width="150" height="50" x="10" y="10" fill="#98efff" />
+    <text x="30" y="40" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold">Chronic Disease</text>
+    </svg>
+    <input id="d6" type="checkbox" style="width:50px;height:50px">
+    
+    <svg width="160" height="60">
+    <rect width="150" height="50" x="10" y="10" fill="#98efff" />
+    <text x="55" y="40" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold">Fatigue</text>
+    </svg>
+    <input id="d7" type="checkbox" style="width:50px;height:50px">
+    <br>
+    <svg width="160" height="60">
+    <rect width="150" height="50" x="10" y="10" fill="#98efff" />
+    <text x="55" y="40" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold">Allergy</text>
+    </svg>
+    <input id="d8" type="checkbox" style="width:50px;height:50px">
+    
+    <svg width="160" height="60">
+    <rect width="150" height="50" x="10" y="10" fill="#98efff" />
+    <text x="50" y="40" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold">Wheezing</text>
+    </svg>
+    <input id="d9" type="checkbox" style="width:50px;height:50px">
+    <br>
+    <svg width="160" height="60">
+    <rect width="150" height="50" x="10" y="10" fill="#98efff" />
+    <text x="20" y="40" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold">Alcohol Consuming</text>
+    </svg>
+    <input id="d10" type="checkbox" style="width:50px;height:50px">
+    
+    <svg width="160" height="60">
+    <rect width="150" height="50" x="10" y="10" fill="#98efff" />
+    <text x="55" y="40" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold">Coughing</text>
+    </svg>
+    <input id="d11" type="checkbox" style="width:50px;height:50px">
+    <br>
+    <svg width="160" height="60">
+    <rect width="150" height="50" x="10" y="10" fill="#98efff" />
+    <text x="14" y="40" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold">Shortness of Breath</text>
+    </svg>
+    <input id="d12" type="checkbox" style="width:50px;height:50px">
+    
+    <svg width="160" height="60">
+    <rect width="150" height="50" x="10" y="10" fill="#98efff" />
+    <text x="12.5" y="40" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold">Swallowing Difficulty</text>
+    </svg>
+    <input id="d13" type="checkbox" style="width:50px;height:50px">
+    <br>
+    <svg width="160" height="60">
+    <rect width="150" height="50" x="10" y="10" fill="#98efff" />
+    <text x="55" y="40" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold">Chest Pain</text>
+    </svg>
+    <input id="d14" type="checkbox" style="width:50px;height:50px">
+  </div>
+</div>
+
+<body id="bodyy">
+    <div id="resultbox" style="position:absolute;left:60px;top:180px;display:none">
+    <svg width="410" height="60">
+    <rect width="400" height="50" x="10" y="10" fill="#fffdc5" style="stroke-width:4;stroke:#dbae7e" />
+    <text id="r_adj" x="35" y="40" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold">Your risk of lung cancer is </text>
+    </svg><br>
+
+    <svg width="100" height="60">
+    <rect width="100" height="50" x="10" y="10" fill="#a0ff94"/>
+    <text x="35" y="30" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold"> <40% </text>
+    <text x="35" y="50" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold"> LOW </text>
+    </svg>
+    <svg width="100" height="60">
+    <rect width="100" height="50" x="10" y="10" fill="#faff94"/>
+    <text x="30" y="30" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold"> 40-60% </text>
+    <text x="25" y="50" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold"> MEDIUM </text>
+    </svg>
+    <svg width="100" height="60">
+    <rect width="100" height="50" x="10" y="10" fill="#ffcb94"/>
+    <text x="30" y="30" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold"> 61-80% </text>
+    <text x="35" y="50" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold"> HIGH </text>
+    </svg>
+    <svg width="100" height="60">
+    <rect width="100" height="50" x="10" y="10" fill="#ff9494"/>
+    <text x="30" y="30" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold"> 81-100% </text>
+    <text x="17.5" y="50" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold"> VERY HIGH </text>
+    </svg><br><p style="font-family:'Montserrat';font-size:17.1px;color:red">*The analysis should be used as personal reference only,<br>please seek professional medical support for detailed diagnosis.</p>
+    <svg width="170" height="60" onclick="showmore()" style="cursor: pointer">
+  <rect width="150" height="50" x="10" y="10" clip-path="inset(0% round 50px)" fill="white" />
+  <text id="showhide" x="35" y="40" fill="black" style="font-family:'Montserrat';font-size:17.1px">Show Detail</text>
+</svg>
+    <div id="furtherresult" style="display:none">
+    <svg width="410" height="60">
+    <rect width="400" height="50" x="10" y="10" fill="#06b51d" style="stroke-width:4;stroke:#029515" />
+    <text x="35" y="40" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold">Bootstrap Aggregation - Decision Tree Model</text>
+    </svg><br>
+    <svg width="220" height="60">
+    <rect width="220" height="50" x="10" y="10" fill="#00d1ff"/>
+    <text id="r_m1d" x="20" y="40" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold">Diagnosis by model: </text>
+    </svg>
+    <svg width="185" height="60">
+    <rect width="185" height="50" x="10" y="10" fill="#3b00ff"/>
+    <text id="r_m1r" x="20" y="40" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold">Risk: </text>
+    </svg><br>
+    <svg width="410" height="60">
+    <rect width="410" height="50" x="10" y="10" fill="#faff00"/>
+    <text id="r_m1a" x="25" y="40" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold">Accuracy of model: </text>
+    </svg><br><br>
+    <svg width="410" height="60">
+    <rect width="400" height="50" x="10" y="10" fill="#cf5aff" style="stroke-width:4;stroke:#9742b9" />
+    <text x="35" y="40" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold">Support Vector Machine Model</text>
+    </svg><br>
+    <svg width="410" height="60">
+    <rect width="400" height="50" x="10" y="10" fill="#00d1ff"/>
+    <text id="r_m2d" x="20" y="40" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold">Diagnosis by model: </text>
+    </svg><br>
+    <svg width="410" height="60">
+    <rect width="400" height="50" x="10" y="10" fill="#faff00"/>
+    <text id="r_m2bp" x="20" y="40" fill="black" style="font-family:'Montserrat';font-size:13.9px" font-weight="bold">Model Best Parameters: </text>
+    </svg>
+    </div>
+  </div>
+    <py-script src="lungcancerprediction_api.py" config="pyscript.json"></py-script>
+</body>
+</html>
