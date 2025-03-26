@@ -87,18 +87,9 @@ def submitbtn(event):
 
   result = [oob_model.predict(input_data),oob_model.predict_proba(input_data)]
   riskindex = result[1].reshape(-1)[1]
-  plhld3 = ""
-  if (riskindex < 0.4):
-    plhld3 = "LOW"
-  elif (riskindex <= 0.6):
-    plhld3 = "MEDIUM"
-  elif (riskindex <= 0.8):
-    plhld3 = "HIGH"
-  else:
-    plhld3 = "VERY HIGH"
+  diagvar = [int(result[0][0])]
 
-  output_div[0].innerHTML = "Your risk of lung cancer is " + plhld3 + "."
-  output_div[1].innerHTML = "Diagnosis by model: " + str(result[0] == [1])
+  output_div[1].innerHTML = "Diagnosis by model: " + str(result[0][0] == 1)
   output_div[2].innerHTML = "Risk: " + str(riskindex*100) + "%"
   output_div[3].innerHTML = "Accuracy: " + str(oob_model.oob_score_)
 
@@ -112,5 +103,15 @@ def submitbtn(event):
   svm=RandomizedSearchCV(SVC(),test_for_best_param,cv=5)
   svm.fit(X,y)
   result = svm.predict(input_data)
-  output_div[4].innerHTML = "Diagnosis by model: " + str(result == [1])
-  output_div[5].innerHTML = "Model Best Parameters: " + str(svm.best_params_)
+  output_div[4].innerHTML = "Diagnosis by model: " + str(result[0] == 1)
+  output_div[5].innerHTML = "Model Best Parameters: " + str(svm.best_params_)  
+  diagvar.append(int(result[0]))
+  
+  plhld3 = ""
+  if (diagvar[0]+diagvar[1] == 2):
+    plhld3 = "HIGH"
+  elif (diagvar[0]+diagvar[1] == 1):
+    plhld3 = "MEDIUM"
+  elif (diagvar[0]+diagvar[1] == 0):
+    plhld3 = "LOW"
+  output_div[0].innerHTML = "Your risk of lung cancer is " + plhld3 + "."
