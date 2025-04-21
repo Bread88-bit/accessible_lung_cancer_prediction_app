@@ -7,10 +7,6 @@ for l in r_identities:
 
 
 import pandas
-from sklearn import linear_model
-import seaborn as sns
-import numpy as np
-import matplotlib.pyplot as plt
 userinput = []
 user2input = []
 def submitbtn(event):
@@ -60,7 +56,6 @@ def submitbtn(event):
 
 
   #start modelling
-  from imblearn.over_sampling import RandomOverSampler
 
   from sklearn.preprocessing import StandardScaler
   scaler=StandardScaler()
@@ -72,7 +67,7 @@ def submitbtn(event):
   from sklearn import tree
   from sklearn.tree import DecisionTreeClassifier
   from sklearn.metrics import accuracy_score
-  import matplotlib.pyplot as plt
+
 
   features = X.columns
 
@@ -89,9 +84,9 @@ def submitbtn(event):
   riskindex = result[1].reshape(-1)[1]
   diagvar = [int(result[0][0])]
 
-  output_div[1].innerHTML = "Diagnosis by model: " + str(result[0][0] == 1)
-  output_div[2].innerHTML = "Risk: " + str(riskindex*100) + "%"
-  output_div[3].innerHTML = "Accuracy: " + str(oob_model.oob_score_)
+  output_div[1].innerHTML = "模型结果：" + str(result[0][0] == 1)
+  output_div[2].innerHTML = "风险：" + str(riskindex*100) + "%"
+  output_div[3].innerHTML = "准确度：" + str(oob_model.oob_score_)
 
 
   #Support Vector Machine
@@ -103,15 +98,15 @@ def submitbtn(event):
   svm=RandomizedSearchCV(SVC(),test_for_best_param,cv=5)
   svm.fit(X,y)
   result = svm.predict(input_data)
-  output_div[4].innerHTML = "Diagnosis by model: " + str(result[0] == 1)
-  output_div[5].innerHTML = "Model Best Parameters: " + str(svm.best_params_)  
+  output_div[4].innerHTML = "模型结果：" + str(result[0] == 1)
+  output_div[5].innerHTML = "最佳参数：" + str(svm.best_params_)  
   diagvar.append(int(result[0]))
   
   plhld3 = ""
   if (diagvar[0]+diagvar[1] == 2):
-    plhld3 = "HIGH"
+    plhld3 = "高"
   elif (diagvar[0]+diagvar[1] == 1):
-    plhld3 = "MEDIUM"
+    plhld3 = "中"
   elif (diagvar[0]+diagvar[1] == 0):
-    plhld3 = "LOW"
-  output_div[0].innerHTML = "Your risk of lung cancer is " + plhld3 + "."
+    plhld3 = "低"
+  output_div[0].innerHTML = "您的风险是：" + plhld3 + "。"

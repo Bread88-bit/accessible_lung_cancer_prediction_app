@@ -1,5 +1,5 @@
 {
-    "packages": ["pandas","scikit-learn","seaborn","numpy","matplotlib","imblearn"],
+    "packages": ["pandas","scikit-learn"],
     "files": {
     "https://raw.githubusercontent.com/Bread88-bit/accessible_lung_cancer_prediction_app/refs/heads/main/lungcancerdataset.csv": "./lungcancerdataset.csv",
     "/lungcancerprediction_api.py": "./subdir/lungcancerprediction_api.py"
