@@ -109,4 +109,4 @@ def submitbtn(event):
     plhld3 = "中"
   elif (diagvar[0]+diagvar[1] == 0):
     plhld3 = "低"
-  output_div[0].innerHTML = "您的风险是：" + plhld3 + "。"
+  output_div[0].innerHTML = "您的风险是：" + plhld3
